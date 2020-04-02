@@ -2,9 +2,7 @@
 
 ![bubblified.gif](https://raw.githubusercontent.com/hohmannr/bubblified/master/bubblified.gif)
 
-A zsh-theme inspired by [agnoster](https://github.com/agnoster/agnoster-zsh-theme) and [bubblewritten](https://github.com/paracorde/dots/blob/master/bubblewritten.zsh-theme). Best used with [ohmyzsh](https://github.com/ohmyzsh/ohmyzsh).
-
-## Installation
+A zsh-theme inspired by [agnoster](https://github.com/agnoster/agnoster-zsh-theme) and [bubblewritten](https://github.com/paracorde/dots/blob/master/bubblewritten.zsh-theme). Best used with [ohmyzsh](https://github.com/ohmyzsh/ohmyzsh).  ## Installation
 ***Assuming you are using ohmyzsh***.
 
 Get the sourcefile
@@ -75,7 +73,7 @@ B. Use the provided `bubblify` function to build custom colored bubble segments
 
 *TIP* - Including `%{$reset_color%}` at the end of the echo will make sure that colors are reset to the default ones after your bubble finishes rendering.
 
-c. Add the function as a subshell call to the `PROMPT`
+C. Add the function as a subshell call to the `PROMPT`
 
 `PROMPT='...$(foo)...'`
 
