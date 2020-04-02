@@ -4,7 +4,7 @@
 
 A zsh-theme inspired by [agnoster](https://github.com/agnoster/agnoster-zsh-theme) and [bubblewritten](https://github.com/paracorde/dots/blob/master/bubblewritten.zsh-theme). Best used with [ohmyzsh](https://github.com/ohmyzsh/ohmyzsh).
 
-### Installation
+## Installation
 ***Assuming you are using ohmyzsh***.
 
 Get the sourcefile
@@ -41,10 +41,10 @@ To change colors for the default bubbles, just change their constants under the 
 
 Normal bubbles are bubbles with the default `bubble_color` and content.
 
-    1. Declare a variable (e.g. the current time)
-    ```
-    time_bubble="%T"
-    ```
+1. Declare a variable (e.g. the current time)
+```
+time_bubble="%T"
+```
     
     2. Build a bubble by enclosing the variable with `$bubble_left` and `$bubble_right`
 
