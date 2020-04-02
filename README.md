@@ -41,19 +41,19 @@ To change colors for the default bubbles, just change their constants under the 
 
 Simple bubbles are bubbles with the default `bubble_color` and content.
 
-A. Declare a variable (e.g. the current time)
+Declare a variable (e.g. the current time)
 
 `time_bubble="%T"`
     
-B. Build a bubble by enclosing the variable with `$bubble_left` and `$bubble_right`
+Build a bubble by enclosing the variable with `$bubble_left` and `$bubble_right`
 
 `time_bubble="$bubble_left%T$bubble_right"`
 
-C. *OPTIONAL* - If you want a different text color, then add an escape sequence with the color definition
+*OPTIONAL* - If you want a different text color, then add an escape sequence with the color definition
 
 `time_bubble="$bubble_left%{$fg[red]%}%T$bubble_right"`
 
-D. Add the variable to the `PROMPT`
+Add the variable to the `PROMPT`
 
 `PROMPT='...$time_bubble...'`
 
@@ -61,11 +61,11 @@ D. Add the variable to the `PROMPT`
 
 Fancy bubbles are in the style of the default `git_bubble`. They consist of multiple segments for which the text and the background can be colored individually.
 
-A. Define a custom function that echos the bubble's content
+Define a custom function that echos the bubble's content
         
 `foo () { echo -n "left middle right" }`
 
-B. Use the provided `bubblify` function to build custom colored bubble segments
+Use the provided `bubblify` function to build custom colored bubble segments
 
 `foo () { echo -n "$(bubblify 0 "left" "black" "red")$(bubblify 1 "middle" "green" "black")$(bubblify "right" "yellow" "magenta")" }`
 
@@ -73,7 +73,7 @@ B. Use the provided `bubblify` function to build custom colored bubble segments
 
 *TIP* - Including `%{$reset_color%}` at the end of the echo will make sure that colors are reset to the default ones after your bubble finishes rendering.
 
-C. Add the function as a subshell call to the `PROMPT`
+Add the function as a subshell call to the `PROMPT`
 
 `PROMPT='...$(foo)...'`
 
