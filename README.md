@@ -39,13 +39,12 @@ To change colors for the default bubbles, just change their constants under the 
 
 ### Custom bubbles
 
-1. Normal bubbles
-
 Normal bubbles are bubbles with the default `bubble_color` and content.
 
     1. Declare a variable (e.g. the current time)
-
-    `time_bubble="%T"`
+    ```
+    time_bubble="%T"
+    ```
     
     2. Build a bubble by enclosing the variable with `$bubble_left` and `$bubble_right`
 
@@ -59,13 +58,11 @@ Normal bubbles are bubbles with the default `bubble_color` and content.
 
     `PROMPT='...$time_bubble...'`
 
-2. Custom bubbles
-
 Custom bubbles are in the style of the default `git_bubble`. They consist of multiple segments for which the text and the background can be colored individually.
 
     1. Define a custom function that echos the bubble's content
         
-    `foo () { echo -n "left middle right" }`
+    ```foo () { echo -n "left middle right" }```
 
     2. Use the provided `bubblify` function to build custom colored bubble segments
 
