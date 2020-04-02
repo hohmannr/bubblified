@@ -137,28 +137,6 @@ filepath_bubble="$bubble_left%{$fg[$filepath_color]%}$filepath_symbol$bubble_rig
 
 error_code_bubble="%(?,,$bubble_left%{$fg[$prompt_symbol_error_color]%}%?$bubble_right)"
 
-# how to create custom building blocks
-# ------------------------------------
-# 1. Default Bubble
-#       a) declare a variable (e.g. the current time)
-#               time_bubble="%T"
-#       b) enclose the variable with '$bubble_left' and 'bubble_right'
-#               time_bubble="$bubble_left%T$bubble_right"
-#       c) [optional] if you want a different text color add an escape sequence with the color definition (e.g. red)
-#               time_bubble="$bubble_left%{$fg[red]%}%T$bubble_right"
-#       d) add the custom bubble to the PROMPT variable at the end of the file
-#               PROMPT='...$time_bubble...'
-#
-# 2. Custom Colored/Segmented Bubble (in the style of 'git_bubble')
-#       a) define a custom function that echos the bubble's content
-#               foo () { echo -n 'left' 'middle' 'right' }
-#       b) use 'bubblify' to build custom colored bubble segments (please read bubblify's documentation)
-#               foo () { echo -n "$(bubblify 0 "left" "black" "red")\
-#                               $(bubblify 1 "middle "green" "blue)\
-#                               $(bubblify 2 "right" "yellow" "magenta") "}
-#       c) add the custom bubble function to the PROMPT variable at the end of the file
-#               PROMPT='...$(foo)...' 
-
 # PROMPTS
 # different prompts to try out, just uncomment/comment
 # --- 1 ---
