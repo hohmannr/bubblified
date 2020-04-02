@@ -37,33 +37,37 @@ To change icons for the default bubbles, just change their constants under the `
 
 To change colors for the default bubbles, just change their constants under the `# COLOR CONSTANTS` section. Valid values are `{'black', 'red', 'blue', 'cyan', 'yellow', 'green', 'white', 'magenta'}`, they correspond to the colors set in your terminal.
 
-### Custom bubbles
+### Custom Bubbles
 
-Normal bubbles are bubbles with the default `bubble_color` and content.
+#### Simple Bubbles
 
-1. Declare a variable (e.g. the current time)
+Simple bubbles are bubbles with the default `bubble_color` and content.
+
+A. Declare a variable (e.g. the current time)
 
 `time_bubble="%T"`
     
-2. Build a bubble by enclosing the variable with `$bubble_left` and `$bubble_right`
+B. Build a bubble by enclosing the variable with `$bubble_left` and `$bubble_right`
 
 `time_bubble="$bubble_left%T$bubble_right"`
 
-3. *OPTIONAL* - If you want a different text color, then add an escape sequence with the color definition
+C. *OPTIONAL* - If you want a different text color, then add an escape sequence with the color definition
 
 `time_bubble="$bubble_left%{$fg[red]%}%T$bubble_right"`
 
-4. Add the variable to the `PROMPT`
+D. Add the variable to the `PROMPT`
 
 `PROMPT='...$time_bubble...'`
 
-Custom bubbles are in the style of the default `git_bubble`. They consist of multiple segments for which the text and the background can be colored individually.
+#### Fancy Bubbles
 
-1. Define a custom function that echos the bubble's content
+Fancy bubbles are in the style of the default `git_bubble`. They consist of multiple segments for which the text and the background can be colored individually.
+
+A. Define a custom function that echos the bubble's content
         
 `foo () { echo -n "left middle right" }`
 
-2. Use the provided `bubblify` function to build custom colored bubble segments
+B. Use the provided `bubblify` function to build custom colored bubble segments
 
 `foo () { echo -n "$(bubblify 0 "left" "black" "red")$(bubblify 1 "middle" "green" "black")$(bubblify "right" "yellow" "magenta")" }`
 
@@ -71,7 +75,7 @@ Custom bubbles are in the style of the default `git_bubble`. They consist of mul
 
 *TIP* - Including `%{$reset_color%}` at the end of the echo will make sure that colors are reset to the default ones after your bubble finishes rendering.
 
-3. Add the function as a subshell call to the `PROMPT`
+c. Add the function as a subshell call to the `PROMPT`
 
 `PROMPT='...$(foo)...'`
 
