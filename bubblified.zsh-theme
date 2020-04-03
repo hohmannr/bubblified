@@ -23,6 +23,8 @@ git_modified_symbol='•'
 git_renamed_symbol=''
 git_untracked_symbol='裸'
 
+ssh_symbol='ssh'
+
 # COLOR CONSTANTS
 # NOTE: Possible values include zsh-color-strings like 'red', 'black', 'magenta' etc.
 # TODO: Add support for zsh-color-codes like '000' to '255' for 256 color support (use command 'spectrum_ls' for all color codes)
@@ -42,15 +44,19 @@ git_modified_color='yellow'
 git_staged_color='magenta' 
 git_icons_color='black'
 
+ssh_symbol_color='black'
+ssh_bubble_color='green'
+
 # HELPER FUNCTIONS
 bubblify () {
     # This is a helper function to build custom bubbles.
     # 
     # ARGS      VALUES          DESC
     # ----      ------          ----
-    # 1.        {0, 1, 2}       0: build left side bubble: content█
+    # 1.        {0, 1, 2, 3}    0: build left side bubble: content█
     #                           1: build right side bubble: █content                
     #                           2: build middle part: █content█
+    #                           3: build custom colored whole bubble: content
     #
     # 2.        string          content to be displayed in partial bubble
     #
@@ -61,11 +67,13 @@ bubblify () {
     if [[ $1 -eq 0 ]]; then
         echo -n "%{$fg[$4]%}$blub_left%{$fg[$3]%}%{$bg[$4]%}$2%{$reset_color%}"
     elif [[ $1 -eq 1 ]]; then
-        echo -n "%{$fg[$3]%}%{$bg[$4]%}$2%{$reset_color%}%{$fg[$4]%}$blub_right%{$reset_color%}"
-    elif [[ $1 -eq 2 ]]; then
         echo -n "%{$fg[$3]%}%{$bg[$4]%}$2%{$reset_color%}"
+    elif [[ $1 -eq 2 ]]; then
+        echo -n "%{$fg[$3]%}%{$bg[$4]%}$2%{$reset_color%}%{$fg[$4]%}$blub_right%{$reset_color%}"
+    elif [[ $1 -eq 3 ]]; then
+        echo -n "%{$fg[$4]%}$blub_left%{$fg[$3]%}%{$bg[$4]%}$2%{$reset_color%}%{$fg[$4]%}$blub_right%{$reset_color%}"
     else
-        echo 'fail'
+        echo 'bblfy_fail'
     fi
 }
 
@@ -119,7 +127,14 @@ git_bubble () {
             git_icons="$git_icons$git_untracked_symbol"
         fi
 
-        echo -n "$(bubblify 0 "$git_info " $git_color $bubble_color)$(bubblify 1 " $git_icons" $git_icons_color $git_color) "
+        echo -n "$(bubblify 0 "$git_info " $git_color $bubble_color)$(bubblify 2 " $git_icons" $git_icons_color $git_color) "
+    fi
+}
+
+ssh_bubble () {
+    # detects an ssh connection and displays a bubble 
+    if [[ -n $SSH_CLIENT || -n $SSH_TTY || -n $SSH_CONNECTION ]]; then
+        echo -n "$(bubblify 3 "$ssh_symbol" $ssh_symbol_color $ssh_bubble_color) "
     fi
 }
 
@@ -140,16 +155,16 @@ error_code_bubble="%(?,,$bubble_left%{$fg[$prompt_symbol_error_color]%}%?$bubble
 # PROMPTS
 # different prompts to try out, just uncomment/comment
 # --- 1 ---
-#PROMPT='$user_machine_bubble$filepath_bubble$(git_bubble)'
+#PROMPT='$(ssh_bubble)$user_machine_bubble$filepath_bubble$(git_bubble)'
 
 # --- 2 ---
 #PROMPT='$end_of_prompt_bubble'
-#RPROMPT='$filepath_bubble$(git_bubble)$error_code_bubble'
+#RPROMPT='$(ssh_bubble)$filepath_bubble$(git_bubble)$error_code_bubble'
 
 # --- 3 ---
 _newline=$'\n'
 _lineup=$'\e[1A'
 _linedown=$'\e[1B'
 
-PROMPT='$user_machine_bubble$filepath_bubble${_newline}$end_of_prompt'
+PROMPT='$(ssh_bubble)$user_machine_bubble$filepath_bubble${_newline}$end_of_prompt'
 RPROMPT='%{${_lineup}%}$(git_bubble)$error_code_bubble%{${_linedown}%}%{$reset_color%}'

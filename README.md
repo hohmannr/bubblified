@@ -50,9 +50,6 @@ To load the edited theme, restart your terminal emulator or source your `.zshrc`
 $ source ~/.zshrc
 ```
 
-
-
-
 ### Icons
 
 To change icons for the default bubbles, just change their constants under the `# SYMBOL CONSTANTS` section.
@@ -111,7 +108,7 @@ foo () {
 }
 ```
 
-*TIP* - `bubblify {0, 1, 2} "foreground-color" "background-color"` where `0` builds a left segment, `1` builds a middle segment and `2` builds a right segment.
+*TIP* - `bubblify {0, 1, 2, 3} "foreground-color" "background-color"` where `0` builds a left segment, `1` builds a middle segment, `2` builds a right segment and `3` builds a whole custom colored bubble with only one segment.
 
 *TIP* - Including `%{$reset_color%}` at the end of the echo will make sure that colors are reset to the default ones after your bubble finishes rendering.
 
@@ -123,4 +120,8 @@ PROMPT='...$(foo)...'
 
 ### Changelog
 
-- version 0.1: Initial commit
+- version 0.1.1:
+    - Fixed bug in `bubblify` where function description and README suggested the wrong building order for `$1`
+
+- version 0.1:
+    - Initial commit
