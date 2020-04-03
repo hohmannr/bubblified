@@ -2,7 +2,12 @@
 
 ![bubblified.gif](https://raw.githubusercontent.com/hohmannr/bubblified/master/bubblified.gif)
 
-A zsh-theme inspired by [agnoster](https://github.com/agnoster/agnoster-zsh-theme) and [bubblewritten](https://github.com/paracorde/dots/blob/master/bubblewritten.zsh-theme). Best used with [ohmyzsh](https://github.com/ohmyzsh/ohmyzsh).  ## Installation
+A zsh-theme inspired by [agnoster](https://github.com/agnoster/agnoster-zsh-theme) and [bubblewritten](https://github.com/paracorde/dots/blob/master/bubblewritten.zsh-theme).
+
+**Best used with [ohmyzsh](https://github.com/ohmyzsh/ohmyzsh) and a [nerdfront](https://github.com/ryanoasis/nerd-fonts)**
+
+## Installation
+
 ***Assuming you are using ohmyzsh***.
 
 Get the sourcefile
@@ -26,6 +31,27 @@ Restart your terminal emulator and enjoy.
 ## Customization
 
 This theme is built with customization in mind. This means that you should be able to customize colors and icons aswell as add custom bubbles in the theme's style.
+
+### What to do before
+
+***Assuming you are using ohmyzsh***.
+
+Before customization please copy this theme to ohmyzsh's custom theme directory.
+```
+$ cp $ZSH/themes/bubblified.zsh-theme $ZSH/custom/themes
+```
+
+Then edit the theme using your favorite editor, mine is neovim.
+```
+$ nvim $ZSH/custom/themes/bubblified.zsh-theme
+```
+To load the edited theme, restart your terminal emulator or source your `.zshrc`
+```
+$ source ~/.zshrc
+```
+
+
+
 
 ### Icons
 
