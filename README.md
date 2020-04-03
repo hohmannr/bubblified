@@ -69,19 +69,19 @@ Simple bubbles are bubbles with the default `bubble_color` and content.
 
 Declare a variable (e.g. the current time)
 
-`time_bubble="%T"`
+```time_bubble="%T"```
     
 Build a bubble by enclosing the variable with `$bubble_left` and `$bubble_right`
 
-`time_bubble="$bubble_left%T$bubble_right"`
+```time_bubble="$bubble_left%T$bubble_right"```
 
 *OPTIONAL* - If you want a different text color, then add an escape sequence with the color definition
 
-`time_bubble="$bubble_left%{$fg[red]%}%T$bubble_right"`
+```time_bubble="$bubble_left%{$fg[red]%}%T$bubble_right"```
 
 Add the variable to the `PROMPT`
 
-`PROMPT='...$time_bubble...'`
+```PROMPT='...$time_bubble...'```
 
 #### Fancy Bubbles
 
@@ -89,11 +89,11 @@ Fancy bubbles are in the style of the default `git_bubble`. They consist of mult
 
 Define a custom function that echos the bubble's content
         
-`foo () { echo -n "left middle right" }`
+```foo () { echo -n "left middle right" }```
 
 Use the provided `bubblify` function to build custom colored bubble segments
 
-`foo () { echo -n "$(bubblify 0 "left" "black" "red")$(bubblify 1 "middle" "green" "black")$(bubblify "right" "yellow" "magenta")" }`
+```foo () { echo -n "$(bubblify 0 "left" "black" "red")$(bubblify 1 "middle" "green" "black")$(bubblify "right" "yellow" "magenta")" }```
 
 *TIP* - `bubblify {0, 1, 2} "foreground-color" "background-color"` where `0` builds a left segment, `1` builds a middle segment and `2` builds a right segment.
 
@@ -101,5 +101,8 @@ Use the provided `bubblify` function to build custom colored bubble segments
 
 Add the function as a subshell call to the `PROMPT`
 
-`PROMPT='...$(foo)...'`
+```PROMPT='...$(foo)...'```
 
+### Changelog
+
+- version 0.1: Initial commit
