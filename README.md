@@ -119,6 +119,8 @@ PROMPT='...$(foo)...'
 ```
 
 ### Changelog
+- version 0.1.2:
+    - Removed unnecessary escape sequences
 
 - version 0.1.1:
     - Fixed bug in `bubblify` where function description and README suggested the wrong building order for `$1`
