@@ -2,6 +2,8 @@
 
 ![bubblified.gif](https://raw.githubusercontent.com/hohmannr/bubblified/master/bubblified.gif)
 
+![blackdracula18.gif](https://raw.githubusercontent.com/blackdracula18/bubblified/master/bubblified-blackdracula18.gif)
+
 A zsh-theme inspired by [agnoster](https://github.com/agnoster/agnoster-zsh-theme) and [bubblewritten](https://github.com/paracorde/dots/blob/master/bubblewritten.zsh-theme).
 
 **Best used with [ohmyzsh](https://github.com/ohmyzsh/ohmyzsh) and a [nerdfront](https://github.com/ryanoasis/nerd-fonts)**
