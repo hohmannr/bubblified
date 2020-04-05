@@ -9,13 +9,13 @@
 blub_left=''
 blub_right=''
 
-prompt_symbol='-->'
-
+# prompt_symbol='-->'
+prompt_symbol='==>'
 user_symbol='%n'
 user_machine_symbol='@' machine_symbol='%M'
-
 filepath_symbol='%~'
 
+# git asset
 git_branch_symbol=''
 git_new_symbol=''
 git_deleted_symbol=''
@@ -61,30 +61,29 @@ bubblify () {
     #
     # 4.        {"red", ...}    background color (bubble segment color) as zsh-color-string
 
-    if [[ $1 -eq 0 ]]; then
-        echo -n "%{$fg[$4]%}$blub_left%{$fg[$3]%}%{$bg[$4]%}$2%{$reset_color%}"
-    elif [[ $1 -eq 1 ]]; then
-        echo -n "%{$fg[$3]%}%{$bg[$4]%}$2%{$reset_color%}%{$fg[$4]%}$blub_right%{$reset_color%}"
-    elif [[ $1 -eq 2 ]]; then
-        echo -n "%{$fg[$3]%}%{$bg[$4]%}$2%{$reset_color%}"
-    else
-        echo 'fail'
-    fi
+    [[ $1 -eq 0 ]] && echo -n "%{$fg[$4]%}$blub_left%{$fg[$3]%}%{$bg[$4]%}$2%{$reset_color%}"
+
+    [[ $1 -eq 1 ]] && echo -n "%{$fg[$3]%}%{$bg[$4]%}$2%{$reset_color%}%{$fg[$4]%}$blub_right%{$reset_color%}"
+
+    [[ $1 -eq 2 ]] && echo -n "%{$fg[$3]%}%{$bg[$4]%}$2%{$reset_color%}"
+
+    [[ $1 -ne 0 && $1 -ne 1 && $1 -ne 2 ]] && echo fail
 }
 
 # PROMPT FUNCTIONS
 git_bubble () {
     # This parses git status in a very very ugly and dirty way to retrieve all necessary information...I am new to this bash scripting...mercy!
     # NOTE: Feel free to submit a pull request to beautify this code to reduce lagg.
+
     local git_branch=$(git rev-parse --abbrev-ref HEAD 2> /dev/null)
 
     if [[ -n $git_branch ]]; then
+
         # branch name with symbol
         local git_info="$git_branch_symbol $git_branch"
 
         # used for coloring
         local git_status=$(git status 2> /dev/null)
-
         local git_untracked=$(grep -m1 "git add" <<< $git_status)
         local git_unstaged=$(grep -m1 "Changes not staged for commit:" <<< $git_status)
         local git_staged=$(grep -m1 "Changes to be committed:" <<< $git_status)
@@ -99,13 +98,12 @@ git_bubble () {
         local git_pull=$(grep -m1 "git pull" <<< $git_status)
 
         # determining coloring
-        if [[ -n $git_untracked || -n $git_unstaged ]]; then
-            local git_color=$git_modified_color
-        elif [[ -n $git_staged ]]; then
-            local git_color=$git_staged_color
-        else
-            local git_color=$git_default_color
-        fi
+        [[ -n $git_untracked || -n $git_unstaged ]] && local git_color=$git_modified_color
+
+        [[ -n $git_staged ]] && local git_color=$git_staged_color
+
+        [[ -z $git_untracked && -z $git_staged ]] && local git_color=$git_default_color
+
 
         # determining which icons to add
         local git_icons=""
@@ -129,8 +127,22 @@ git_bubble () {
     fi
 }
 
+preexec() {
+    timer=${timer:-$SECONDS}
+}
+
+precmd() {
+    if [ $timer ]; then
+        timer_show=$(($SECONDS - $timer))
+        timer_show=$(printf '%.*f\n' 3 $timer_show)
+        exit_code_and_command_time_bubble_error="%(?,%{$fg[blue]%}$bubble_left%{$fg[blue]%}[%?] : $timer_show $bubble_right,%{$fg[red]%}$bubble_left%{$fg[red]%}[%?] : $timer_show $bubble_right)"
+        unset timer
+    fi
+}
+
 # DEFAULT PROMPT BUILDING BLOCKS
 bubble_left="%{$fg[$bubble_color]%}$blub_left%{$reset_color%}%{$bg[$bubble_color]%}"
+
 bubble_right="%{$reset_color%}%{$fg[$bubble_color]%}$blub_right%{$reset_color%} "
 
 end_of_prompt_bubble="$bubble_left%(?,%{$fg[$prompt_symbol_color]%}$prompt_symbol,%{$fg[$prompt_symbol_error_color]%}$prompt_symbol)$bubble_right"
@@ -141,7 +153,7 @@ user_machine_bubble="$bubble_left%{$fg[$user_color]%}$user_symbol%{$fg[$user_mac
 
 filepath_bubble="$bubble_left%{$fg[$filepath_color]%}$filepath_symbol$bubble_right"
 
-# error_code_bubble="%(?,,$bubble_left%{$fg[$prompt_symbol_error_color]%}%?$bubble_right)"
+error_code_bubble="%(?,,$bubble_left%{$fg[$prompt_symbol_error_color]%}%?$bubble_right)"
 
 # PROMPTS
 # different prompts to try out, just uncomment/comment
@@ -153,21 +165,13 @@ filepath_bubble="$bubble_left%{$fg[$filepath_color]%}$filepath_symbol$bubble_rig
 # RPROMPT='$filepath_bubble$(git_bubble)$error_code_bubble'
 
 # --- 3 ---
+
+# RPROMPT='%{${_lineup}%}%F{$hcolor}[%?%F{$dcolor}] : %F{$hcolor}${timer_show}s %F{$dcolor} %{${_linedown}%'
+# RPROMPT='%{${_lineup}%}$exit_code_and_command_time_bubble_success %{${_linedown}%'
+
 _newline=$'\n'
 _lineup=$'\e[1A'
 _linedown=$'\e[1B'
 
-preexec() {
-    timer=${timer:-$SECONDS}
-}
-
-precmd() {
-    if [ $timer ]; then
-        timer_show=$(($SECONDS - $timer))
-        timer_show=$(printf '%.*f\n' 3 $timer_show)
-        RPROMPT='%{${_lineup}%}%F{$hcolor}[%?%F{$dcolor}] : %F{$hcolor}${timer_show}s %F{$dcolor} %{${_linedown}%'
-        unset timer
-    fi
-}
-
 PROMPT='${_linedown}$filepath_bubble$(git_bubble)${_newline}$end_of_prompt'
+RPROMPT='%{${_lineup}%}$exit_code_and_command_time_bubble_error %{${_linedown}%'
