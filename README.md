@@ -81,6 +81,16 @@ To change icons for the default bubbles, just change their constants under the `
 
 To change colors for the default bubbles, just change their constants under the `# COLOR CONSTANTS` section. Valid values are `{'black', 'red', 'blue', 'cyan', 'yellow', 'green', 'white', 'magenta'}`, they correspond to the colors set in your terminal.
 
+```
+filepath_color='blue'
+```
+
+You can also use zsh-color-codes for a wider spectrum of 256 colors (use the command `$ spectrum_ls` for a complete list). When working with color codes, make sure that you set all three digits.
+
+```
+filepath_color='078'
+```
+
 ### SSH
 
 ***Assuming you have installed the theme ON your SSH-MACHINE.***
