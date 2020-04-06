@@ -1,6 +1,6 @@
 # Bubblified zsh-theme
 
-![bubblified.gif](https://raw.githubusercontent.com/hohmannr/bubblified/master/bubblified.gif)
+![bubblified.gif](https://raw.githubusercontent.com/hohmannr/bubblified/master/pics/bubblified.gif)
 
 A zsh-theme inspired by [agnoster](https://github.com/agnoster/agnoster-zsh-theme) and [bubblewritten](https://github.com/paracorde/dots/blob/master/bubblewritten.zsh-theme).
 
@@ -40,12 +40,16 @@ Restart your terminal emulator and enjoy.
 ## Features
 
 ### 256 Color support
-This themes supports 256 colors, you can use zsh-color-codes (get a list by running `$ spectrum_ls`) or the traditional zsh-color
+This theme supports 256 colors, you can use zsh-color-codes (get a list by running `$ spectrum_ls`) or the traditional zsh-color-strings (e.g. `'red'`). Check the **Customization** section for further information.
+
+![256-colors.png](https://raw.githubusercontent.com/hohmannr/bubblified/master/pics/256-colors.png)
+
 
 ### SSH Support
 
 If you are installing this theme on a ssh-machine, it automatically detects when you connect to this machine and displays a ssh symbol. You canfreely choose this symbol and the bubble color for every ssh-machine that you manage, making them easily differentiable. Check the **Customization** section for further information.
 
+![ssh-bubblified.png](https://raw.githubusercontent.com/hohmannr/bubblified/master/pics/ssh-bubblified.png)
 
 ## Customization
 
