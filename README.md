@@ -102,7 +102,6 @@ To change the icon and the colors (including the bubble's color) you have to cus
 #### Simple Bubbles
 
 Simple bubbles are bubbles with the default `bubble_color` and content.
-
 Declare a variable (e.g. the current time)
 
 ```
@@ -157,7 +156,7 @@ PROMPT='...$(foo)...'
 ```
 
 
-### Changelog
+## Changelog
 - version 0.2:
     - added ssh support
     - added 256 color support
