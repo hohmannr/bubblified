@@ -8,6 +8,16 @@ A zsh-theme inspired by [agnoster](https://github.com/agnoster/agnoster-zsh-them
 
 ## Installation
 
+### Antigen
+
+Place the following line in the [right](https://github.com/zsh-users/antigen) spot of your `.zshrc`
+
+```
+antigen theme hohmannr/bubblified
+```
+
+
+### Manual
 ***Assuming you are using ohmyzsh***.
 
 Get the sourcefile
@@ -26,6 +36,15 @@ ZSH_THEME="bubblified"
 ```
 
 Restart your terminal emulator and enjoy.
+
+## Features
+
+### 256 Color support
+This themes supports 256 colors, you can use zsh-color-codes (get a list by running `$ spectrum_ls`) or the traditional zsh-color
+
+### SSH Support
+
+If you are installing this theme on a ssh-machine, it automatically detects when you connect to this machine and displays a ssh symbol. You canfreely choose this symbol and the bubble color for every ssh-machine that you manage, making them easily differentiable. Check the **Customization** section for further information.
 
 
 ## Customization
@@ -57,6 +76,12 @@ To change icons for the default bubbles, just change their constants under the `
 ### Colors
 
 To change colors for the default bubbles, just change their constants under the `# COLOR CONSTANTS` section. Valid values are `{'black', 'red', 'blue', 'cyan', 'yellow', 'green', 'white', 'magenta'}`, they correspond to the colors set in your terminal.
+
+### SSH
+
+***Assuming you have installed the theme ON your SSH-MACHINE.***
+
+To change the icon and the colors (including the bubble's color) you have to customize the theme **on your ssh-machine**.
 
 ### Custom Bubbles
 
@@ -91,9 +116,8 @@ PROMPT='...$time_bubble...'
 #### Fancy Bubbles
 
 Fancy bubbles are in the style of the default `git_bubble`. They consist of multiple segments for which the text and the background can be colored individually.
-
 Define a custom function that echos the bubble's content
-        
+
 ```
 foo () {
     echo -n "left middle right"
@@ -118,12 +142,16 @@ Add the function as a subshell call to the `PROMPT`
 PROMPT='...$(foo)...'
 ```
 
+
 ### Changelog
+- version 0.2:
+    - added ssh support
+
 - version 0.1.2:
-    - Removed unnecessary escape sequences
+    - removed unnecessary escape sequences
 
 - version 0.1.1:
-    - Fixed bug in `bubblify` where function description and README suggested the wrong building order for `$1`
+    - fixed bug in `bubblify` where function description and README suggested the wrong building order for `$1`
 
 - version 0.1:
-    - Initial commit
+    - initial commit
