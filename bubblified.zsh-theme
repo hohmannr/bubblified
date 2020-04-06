@@ -1,6 +1,6 @@
 # vim filetype declaration for highlighting
 # vim:ft=sh
-#
+
 # Bubble Theme
 # Inspired by bubblewritten and agnoster
 # written by hohmannr
@@ -108,7 +108,11 @@ git_bubble () {
         local git_status=$(git status 2> /dev/null) 
 
         local git_untracked=$(echo "$git_status" | grep -m1 "Untracked files:")
-        local git_unstaged=$(echo "$git_status" | grep -m1 "Changes not staged for commit:") local git_staged=$(echo "$git_status"| grep -m1 "Changes to be committed:") # used for icons local git_modified=$(echo "$git_status" | grep -m1 "modified:") local git_renamed=$(echo "$git_status" | grep -m1 "renamed:")
+        local git_unstaged=$(echo "$git_status" | grep -m1 "Changes not staged for commit:") local git_staged=$(echo "$git_status"| grep -m1 "Changes to be committed:")
+        
+        # used for icons
+        local git_modified=$(echo "$git_status" | grep -m1 "modified:")
+        local git_renamed=$(echo "$git_status" | grep -m1 "renamed:")
         local git_new=$(echo "$git_status" | grep -m1 "new file:")
         local git_deleted=$(echo "$git_status" | grep -m1 "deleted:")
 
@@ -148,6 +152,13 @@ ssh_bubble () {
     if [[ -n $SSH_CLIENT || -n $SSH_TTY || -n $SSH_CONNECTION ]]; then
         echo -n "$(bubblify 3 "$ssh_symbol" $ssh_symbol_color $ssh_bubble_color) "
     fi
+}
+
+testing_bubble () {
+    # tests color support
+    echo -n "$(bubblify 0 "Zelda " "black" "088")$(bubblify 1 " Link " "black" "089")$(bubblify 1 " Daruk " "black" "090")$(bubblify 1 " Urbosa " "black" "091")$(bubblify 1 " Mipha " "black" "092")$(bubblify 2 " Revali" "black" "093")$_newline$_newline"
+    echo -n "$(bubblify 0 "Zelda " "black" "166")$(bubblify 1 " Link " "black" "167")$(bubblify 1 " Daruk " "black" "168")$(bubblify 1 " Urbosa " "black" "169")$(bubblify 1 " Mipha " "black" "170")$(bubblify 2 " Revali" "black" "171")$_newline$_newline"
+    echo -n "$(bubblify 0 "Zelda " "black" "082")$(bubblify 1 " Link " "black" "083")$(bubblify 1 " Daruk " "black" "084")$(bubblify 1 " Urbosa " "black" "085")$(bubblify 1 " Mipha " "black" "086")$(bubblify 2 " Revali" "black" "087") "
 }
 
 # DEFAULT PROMPT BUILDING BLOCKS
