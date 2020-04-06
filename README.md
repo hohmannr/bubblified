@@ -146,6 +146,7 @@ PROMPT='...$(foo)...'
 ### Changelog
 - version 0.2:
     - added ssh support
+    - added 256 color support
 
 - version 0.1.2:
     - removed unnecessary escape sequences
