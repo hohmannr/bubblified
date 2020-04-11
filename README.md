@@ -40,12 +40,6 @@ Restart your terminal emulator and enjoy.
 
 ## Features
 
-### 256 Color support
-
-This theme supports 256 colors, you can use zsh-color-codes (get a list by running `$ spectrum_ls`) or the traditional zsh-color-strings (e.g. `'red'`). Check the **Customization** section for further information.
-
-![256-colors.png](https://raw.githubusercontent.com/hohmannr/bubblified/master/pics/256-colors.png)
-
 ### Git support
 
 The theme's git parser adds two level of git information. Firstly, it colors all common git states differently. Secondly, it gives detailed change information by displaying a variety of icons.
@@ -67,11 +61,19 @@ The theme's git parser adds two level of git information. Firstly, it colors all
 - `裸` – untracked file
 - `` – indexed file copied
 
+![git-demo.png](https://raw.githubusercontent.com/hohmannr/bubblified/dev/pics/git-demo.png)
+
 ### SSH Support
 
 If you are installing this theme on a ssh-machine, it automatically detects when you connect to this machine and displays a ssh symbol. You can freely choose this symbol and the bubble color for every ssh-machine that you manage, making them easily differentiable. Check the **Customization** section for further information.
 
-![ssh-bubblified.png](https://raw.githubusercontent.com/hohmannr/bubblified/master/pics/ssh-bubblified.png)
+![ssh-demo.png](https://raw.githubusercontent.com/hohmannr/bubblified/dev/pics/ssh-demo.png)
+
+### 256 Color support
+
+This theme supports 256 colors, you can use zsh-color-codes (get a list by running the command `spectrum_ls`) or the traditional zsh-color-strings (e.g. `'red'`). Check the **Customization** section for further information.
+
+![256-colors-demo.png](https://raw.githubusercontent.com/hohmannr/bubblified/dev/pics/256-colors-demo.png)
 
 ## Customization
 
@@ -107,7 +109,7 @@ To change colors for the default bubbles, just change their constants under the 
 filepath_color='blue'
 ```
 
-You can also use zsh-color-codes for a wider spectrum of 256 colors (use the command `$ spectrum_ls` for a complete list). When working with color codes, make sure that you set all three digits.
+You can also use zsh-color-codes for a wider spectrum of 256 colors (use the command `spectrum_ls` for a complete list). When working with color codes, make sure that you set all three digits.
 
 ```
 filepath_color='078'
@@ -169,7 +171,7 @@ foo () {
 }
 ```
 
-*TIP* - `bubblify {0, 1, 2, 3} "foreground-color" "background-color"` where `0` builds a left segment, `1` builds a middle segment, `2` builds a right segment and `3` builds a whole custom colored bubble with only one segment.
+*TIP* - `bubblify {0, 1, 2, 3} "foreground-color" "background-color"` where `0` builds a left segment, `1` builds a middle segment, `2` builds a right segment and `3` builds a whole custom colored bubble with only one segment. "foreground-color" and "background-color" can be used with zsh-color-strings or zsh-color-codes.
 
 *TIP* - Including `%{$reset_color%}` at the end of the echo will make sure that colors are reset to the default ones after your bubble finishes rendering.
 

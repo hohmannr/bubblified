@@ -1,4 +1,3 @@
-# vim filetype declaration for highlighting
 # vim:ft=sh
 
 # Bubble Theme
@@ -173,20 +172,6 @@ ssh_bubble () {
     fi
 }
 
-color_demo_bubble () {
-    # demos 256 color support
-    echo -n "$(bubblify 0 "Zelda " "black" "088")$(bubblify 1 " Link " "black" "089")$(bubblify 1 " Daruk " "black" "090")$(bubblify 1 " Urbosa " "black" "091")$(bubblify 1 " Mipha " "black" "092")$(bubblify 2 " Revali" "black" "093")$_newline$_newline"
-    echo -n "$(bubblify 0 "Zelda " "black" "166")$(bubblify 1 " Link " "black" "167")$(bubblify 1 " Daruk " "black" "168")$(bubblify 1 " Urbosa " "black" "169")$(bubblify 1 " Mipha " "black" "170")$(bubblify 2 " Revali" "black" "171")$_newline$_newline"
-    echo -n "$(bubblify 0 "Zelda " "black" "082")$(bubblify 1 " Link " "black" "083")$(bubblify 1 " Daruk " "black" "084")$(bubblify 1 " Urbosa " "black" "085")$(bubblify 1 " Mipha " "black" "086")$(bubblify 2 " Revali" "black" "087") "
-}
-
-git_demo_bubble () {
-    echo -n "$(bubblify 0 "$git_branch_symbol master " $git_clean_color $bubble_color)$(bubblify 2 " " $git_symbols_color $git_clean_color)$_newline$_newline"
-    echo -n "$(bubblify 0 "$git_branch_symbol master " $git_unstaged_color $bubble_color)$(bubblify 2 " $git_modified_symbol$git_added_symbol" $git_symbols_color $git_unstaged_color)$_newline$_newline"
-    echo -n "$(bubblify 0 "$git_branch_symbol master " $git_staged_color $bubble_color)$(bubblify 2 " $git_modified_symbol$git_added_symbol" $git_symbols_color $git_staged_color)$_newline$_newline"
-    echo -n "$(bubblify 0 "$git_branch_symbol master " $git_stashed_color $bubble_color)$(bubblify 2 " " $git_symbols_color $git_stashed_color)$_newline$_newline"
-    echo -n "$(bubblify 0 "$git_branch_symbol master " $git_unmerged_color $bubble_color)$(bubblify 2 " $git_modified_symbol" $git_symbols_color $git_unmerged_color)$_newline$_newline"
-}
 
 # DEFAULT PROMPT BUILDING BLOCKS
 bubble_left="$(foreground $bubble_color)$blub_left%{$reset_color%}$(background $bubble_color)"
@@ -219,5 +204,4 @@ _linedown=$'\e[1B'
 
 PROMPT='$(ssh_bubble)$user_machine_bubble$filepath_bubble$_newline$end_of_prompt%{$reset_color%}'
 RPROMPT='%{$_lineup%}$(git_bubble)$error_code_bubble%{$_linedown%}%{$reset_color%}'
-
 
