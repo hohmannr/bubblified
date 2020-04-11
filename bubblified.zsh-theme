@@ -24,7 +24,7 @@ git_deleted_symbol=''
 git_renamed_symbol=''
 git_untracked_symbol='裸'
 git_copied_symbol=''
-git_unmerged_symbol=''
+git_unmerged_symbol='!'
 git_stashed_symbol=''
 
 ssh_symbol='ssh'
