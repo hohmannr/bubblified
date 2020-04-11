@@ -61,19 +61,19 @@ The theme's git parser adds two level of git information. Firstly, it colors all
 - `裸` – untracked file
 - `` – indexed file copied
 
-![git-demo.png](https://raw.githubusercontent.com/hohmannr/bubblified/dev/pics/git-demo.png)
+![git-demo.png](https://raw.githubusercontent.com/hohmannr/bubblified/master/pics/git-demo.png)
 
 ### SSH Support
 
 If you are installing this theme on a ssh-machine, it automatically detects when you connect to this machine and displays a ssh symbol. You can freely choose this symbol and the bubble color for every ssh-machine that you manage, making them easily differentiable. Check the **Customization** section for further information.
 
-![ssh-demo.png](https://raw.githubusercontent.com/hohmannr/bubblified/dev/pics/ssh-demo.png)
+![ssh-demo.png](https://raw.githubusercontent.com/hohmannr/bubblified/master/pics/ssh-demo.png)
 
 ### 256 Color support
 
 This theme supports 256 colors, you can use zsh-color-codes (get a list by running the command `spectrum_ls`) or the traditional zsh-color-strings (e.g. `'red'`). Check the **Customization** section for further information.
 
-![256-colors-demo.png](https://raw.githubusercontent.com/hohmannr/bubblified/dev/pics/256-colors-demo.png)
+![256-colors-demo.png](https://raw.githubusercontent.com/hohmannr/bubblified/master/pics/256-colors-demo.png)
 
 ## Customization
 
