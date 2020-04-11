@@ -12,7 +12,7 @@ blub_right=''
 prompt_symbol='-->'
 
 user_symbol='%n'
-user_machine_symbol='@'
+user_machine_symbol=' גּ '
 machine_symbol='%M'
 
 filepath_symbol='%~'
