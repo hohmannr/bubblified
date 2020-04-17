@@ -1,5 +1,6 @@
 # Bubblified zsh-theme
 
+
 ![bubblified.gif](https://raw.githubusercontent.com/hohmannr/bubblified/master/pics/bubblified.gif)
 
 A zsh-theme inspired by [agnoster](https://github.com/agnoster/agnoster-zsh-theme) and [bubblewritten](https://github.com/paracorde/dots/blob/master/bubblewritten.zsh-theme).
