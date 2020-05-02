@@ -4,7 +4,7 @@
 
 A zsh-theme inspired by [agnoster](https://github.com/agnoster/agnoster-zsh-theme) and [bubblewritten](https://github.com/paracorde/dots/blob/master/bubblewritten.zsh-theme).
 
-**Best used with [ohmyzsh](https://github.com/ohmyzsh/ohmyzsh) and powered by [nerdfronts](https://github.com/ryanoasis/nerd-fonts)**
+**Best used with [ohmyzsh](https://github.com/ohmyzsh/ohmyzsh) and powered by [nerdfonts](https://github.com/ryanoasis/nerd-fonts)**
 
 ## Installation
 
