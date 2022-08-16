@@ -172,6 +172,21 @@ ssh_bubble () {
     fi
 }
 
+preexec () {
+    (( $#_elapsed > 1000 )) && set -A _elapsed $_elapsed[-1000,-1]
+    typeset -ig _start=SECONDS
+}
+precmd () {
+   (( _start >= 0 )) && set -A _elapsed $_elapsed $(( SECONDS-_start ))
+   _start=-1
+}
+exec_time_bubble() {
+    if [[ $_elapsed[-1] > 0 ]]
+    then
+        echo -n "$bubble_left$(foreground '165')$_elapsed[-1]s$bubble_right"
+        set -A _elapsed
+    fi
+}
 
 # DEFAULT PROMPT BUILDING BLOCKS
 bubble_left="$(foreground $bubble_color)$blub_left%{$reset_color%}$(background $bubble_color)"
