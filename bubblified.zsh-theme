@@ -276,6 +276,6 @@ _newline=$'\n'
 _lineup=$'\e[1A'
 _linedown=$'\e[1B'
 
-PROMPT='$(ssh_bubble)$user_machine_bubble$filepath_bubble$_newline$end_of_prompt%{$reset_color%}'
-RPROMPT='%{$_lineup%}$(git_bubble)$error_code_bubble%{$_linedown%}%{$reset_color%}'
+PROMPT='$_newline$(ssh_bubble)$user_machine_bubble$filepath_bubble$_newline$end_of_prompt%{$reset_color%}'
+RPROMPT='%{$_lineup%}$(git_bubble)$error_code_bubble$(exec_time_bubble)$date_bubble$time_bubble$(battery_bubble)%{$_linedown%}%{$reset_color%}'
 
