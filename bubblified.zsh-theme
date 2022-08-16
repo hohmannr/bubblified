@@ -188,6 +188,61 @@ exec_time_bubble() {
     fi
 }
 
+
+battery_bubble () {
+    local battery_percent=`cat /sys/class/power_supply/BAT0/capacity`
+    if [[ $battery_percent == 100 ]]
+    then
+        local battery_color='027'
+        local battery_icon='\uf578'
+    elif [[ $battery_percent > 90 ]]
+    then
+        local battery_color='046'
+        local battery_icon='\uf578'
+    elif [[ $battery_percent > 80 ]]
+    then
+        local battery_color='046'
+        local battery_icon='\uf581'
+    elif [[ $battery_percent > 70 ]]
+    then
+        local battery_color='047'
+        local battery_icon='\uf580'
+    elif [[ $battery_percent > 60 ]]
+    then
+        local battery_color='047'
+        local battery_icon='\uf57f'
+    elif [[ $battery_percent > 50 ]]
+    then
+        local battery_color='120'
+        local battery_icon='\uf57e'
+    elif [[ $battery_percent > 40 ]]
+    then
+        local battery_color='190'
+        local battery_icon='\uf57d'
+    elif [[ $battery_percent > 30 ]]
+    then
+        local battery_color='220'
+        local battery_icon='\uf57c'
+    elif [[ $battery_percent > 20 ]]
+    then
+        local battery_color='202'
+        local battery_icon='\uf57b'
+    elif [[ $battery_percent > 10 ]]
+    then
+        local battery_color='196'
+        local battery_icon='\uf57a'
+    elif [[ $battery_percent > 5 ]]
+    then
+        local battery_color='009'
+        local battery_icon='\uf579'
+    else
+        local battery_color='001'
+        local battery_icon='\uf58d'
+    fi
+    
+    echo -n "$bubble_left$(foreground $battery_color)$battery_percent%% $battery_icon$bubble_right"
+}
+
 # DEFAULT PROMPT BUILDING BLOCKS
 bubble_left="$(foreground $bubble_color)$blub_left%{$reset_color%}$(background $bubble_color)"
 bubble_right="%{$reset_color%}$(foreground $bubble_color)$blub_right%{$reset_color%} "
