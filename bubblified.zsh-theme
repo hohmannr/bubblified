@@ -187,6 +187,10 @@ filepath_bubble="$bubble_left$(foreground $filepath_color)$filepath_symbol$bubbl
 
 error_code_bubble="%(?,,$bubble_left$(foreground $prompt_symbol_error_color)%?$bubble_right)"
 
+date_bubble="$bubble_left$(foreground '208')%W$bubble_right"
+
+time_bubble="$bubble_left$(foreground '073')%T  $bubble_right"
+
 # PROMPTS
 # different prompts to try out, just uncomment/comment
 
