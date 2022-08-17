@@ -243,6 +243,14 @@ battery_bubble () {
     echo -n "$bubble_left$(foreground $battery_color)$battery_percent%% $battery_icon$bubble_right"
 }
 
+task_bubble() {
+    num_task=`task list 2> /dev/null | tail -n 1 | cut -d ' ' -f 1`
+    if [[ $num_task > 0 ]]
+    then
+        echo -n "$bubble_left$(foreground '123')$num_task $bubble_right"
+    fi
+}
+
 # DEFAULT PROMPT BUILDING BLOCKS
 bubble_left="$(foreground $bubble_color)$blub_left%{$reset_color%}$(background $bubble_color)"
 bubble_right="%{$reset_color%}$(foreground $bubble_color)$blub_right%{$reset_color%} "
@@ -276,6 +284,6 @@ _newline=$'\n'
 _lineup=$'\e[1A'
 _linedown=$'\e[1B'
 
-PROMPT='$_newline$(ssh_bubble)$user_machine_bubble$filepath_bubble$_newline$end_of_prompt%{$reset_color%}'
+PROMPT='$_newline$(ssh_bubble)$user_machine_bubble$filepath_bubble$(task_bubble)$_newline$end_of_prompt%{$reset_color%}'
 RPROMPT='%{$_lineup%}$(git_bubble)$error_code_bubble$(exec_time_bubble)$date_bubble$time_bubble$(battery_bubble)%{$_linedown%}%{$reset_color%}'
 
