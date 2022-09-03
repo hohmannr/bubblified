@@ -227,47 +227,47 @@ exec_time_bubble() {
 
 battery_bubble () {
     local battery_percent=`cat /sys/class/power_supply/BAT0/capacity`
-    if [[ $battery_percent == 100 ]]
+    if [[ $battery_percent -eq 100 ]]
     then
         local battery_color='027'
         local battery_icon='\uf578'
-    elif [[ $battery_percent > 90 ]]
+    elif [[ $battery_percent -gt 90 ]]
     then
         local battery_color='046'
         local battery_icon='\uf578'
-    elif [[ $battery_percent > 80 ]]
+    elif [[ $battery_percent -gt 80 ]]
     then
         local battery_color='046'
         local battery_icon='\uf581'
-    elif [[ $battery_percent > 70 ]]
+    elif [[ $battery_percent -gt 70 ]]
     then
         local battery_color='047'
         local battery_icon='\uf580'
-    elif [[ $battery_percent > 60 ]]
+    elif [[ $battery_percent -gt 60 ]]
     then
         local battery_color='047'
         local battery_icon='\uf57f'
-    elif [[ $battery_percent > 50 ]]
+    elif [[ $battery_percent -gt 50 ]]
     then
         local battery_color='120'
         local battery_icon='\uf57e'
-    elif [[ $battery_percent > 40 ]]
+    elif [[ $battery_percent -gt 40 ]]
     then
         local battery_color='190'
         local battery_icon='\uf57d'
-    elif [[ $battery_percent > 30 ]]
+    elif [[ $battery_percent -gt 30 ]]
     then
         local battery_color='220'
         local battery_icon='\uf57c'
-    elif [[ $battery_percent > 20 ]]
+    elif [[ $battery_percent -gt 20 ]]
     then
         local battery_color='202'
         local battery_icon='\uf57b'
-    elif [[ $battery_percent > 10 ]]
+    elif [[ $battery_percent -gt 10 ]]
     then
         local battery_color='196'
         local battery_icon='\uf57a'
-    elif [[ $battery_percent > 5 ]]
+    elif [[ $battery_percent -gt 5 ]]
     then
         local battery_color='009'
         local battery_icon='\uf579'
