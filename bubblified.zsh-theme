@@ -227,9 +227,13 @@ exec_time_bubble() {
 
 battery_bubble () {
     local battery_percent=`cat /sys/class/power_supply/BAT0/capacity`
-    if [[ $battery_percent -eq 100 ]]
+    if [[ "`cat /sys/class/power_supply/AC0/online`" -eq 1 ]]
     then
-        local battery_color='027'
+        local battery_color='220'
+        local battery_icon='\u26a1'
+    elif [[ $battery_percent -eq 100 ]]
+    then
+        local battery_color='045'
         local battery_icon='\uf578'
     elif [[ $battery_percent -gt 90 ]]
     then
