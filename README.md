@@ -13,7 +13,7 @@ A zsh-theme inspired by [agnoster](https://github.com/agnoster/agnoster-zsh-them
 Place the following line in the [right](https://github.com/zsh-users/antigen) spot of your `.zshrc`
 
 ```
-antigen theme hohmannr/bubblified
+antigen theme arsalanyavari/bubblified
 ```
 
 
