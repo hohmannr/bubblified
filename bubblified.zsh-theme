@@ -8,10 +8,10 @@
 blub_left=''
 blub_right=''
 
-prompt_symbol='-->'
+prompt_symbol='❯'
 
 user_symbol='%n'
-user_machine_symbol=' גּ '
+user_machine_symbol=' 🐧'
 machine_symbol='%M'
 
 filepath_symbol='%~'
@@ -172,6 +172,116 @@ ssh_bubble () {
     fi
 }
 
+preexec () {
+    (( $#_elapsed > 1000 )) && set -A _elapsed $_elapsed[-1000,-1]
+    typeset -ig _start=SECONDS
+}
+precmd () {
+   (( _start >= 0 )) && set -A _elapsed $_elapsed $(( SECONDS-_start ))
+   _start=-1
+}
+exec_time_bubble() {
+    local hour=$((_elapsed[-1]/3600))
+    local minute=$((_elapsed[-1]%3600/60))
+    local second=$((_elapsed[-1]%3600%60))
+
+    if [[ $minute -lt 10 ]]
+    then
+        local _minute="0$minute"
+    else
+        local _minute=$minute
+    fi
+    if [[ $second -lt 10 ]]
+    then
+        local _second="0$second"
+    else
+        local _second=$second
+    fi
+
+    local out=""
+    if [[ $_elapsed[-1] > 0 ]]
+    then
+        if [[ $hour -gt 0 ]]
+        then
+            local out="$hour:$_minute:$_second"
+        elif [[ $minute -gt 0 ]]
+        then
+            local out="$minute:$_second"
+        elif [[ $second -gt 0 ]]
+        then
+            local out=$second"s"
+        fi
+    fi
+
+    if [[ $_elapsed[-1] > 86399 ]]
+    then
+        out="It took more than a day :|"
+    fi
+
+    if [[ $out ]]
+    then
+        echo -n "$bubble_left$(foreground '165')$out$bubble_right"
+        set -A _elapsed
+    fi
+}
+
+battery_bubble () {
+    local battery_percent=`cat /sys/class/power_supply/BAT0/capacity`
+    if [[ "`cat /sys/class/power_supply/AC0/online`" -eq 1 ]]
+    then
+        local battery_color='220'
+        local battery_icon='\u26a1'
+    elif [[ $battery_percent -eq 100 ]]
+    then
+        local battery_color='045'
+        local battery_icon='\uf578'
+    elif [[ $battery_percent -gt 90 ]]
+    then
+        local battery_color='046'
+        local battery_icon='\uf578'
+    elif [[ $battery_percent -gt 80 ]]
+    then
+        local battery_color='046'
+        local battery_icon='\uf581'
+    elif [[ $battery_percent -gt 70 ]]
+    then
+        local battery_color='047'
+        local battery_icon='\uf580'
+    elif [[ $battery_percent -gt 60 ]]
+    then
+        local battery_color='047'
+        local battery_icon='\uf57f'
+    elif [[ $battery_percent -gt 50 ]]
+    then
+        local battery_color='120'
+        local battery_icon='\uf57e'
+    elif [[ $battery_percent -gt 40 ]]
+    then
+        local battery_color='190'
+        local battery_icon='\uf57d'
+    elif [[ $battery_percent -gt 30 ]]
+    then
+        local battery_color='220'
+        local battery_icon='\uf57c'
+    elif [[ $battery_percent -gt 20 ]]
+    then
+        local battery_color='202'
+        local battery_icon='\uf57b'
+    elif [[ $battery_percent -gt 10 ]]
+    then
+        local battery_color='196'
+        local battery_icon='\uf57a'
+    elif [[ $battery_percent -gt 5 ]]
+    then
+        local battery_color='009'
+        local battery_icon='\uf579'
+    else
+        local battery_color='001'
+        local battery_icon='\uf58d'
+    fi
+    
+    echo -n "$bubble_left$(foreground $battery_color)$battery_percent%% $battery_icon$bubble_right"
+}
 
 # DEFAULT PROMPT BUILDING BLOCKS
 bubble_left="$(foreground $bubble_color)$blub_left%{$reset_color%}$(background $bubble_color)"
@@ -186,6 +296,10 @@ user_machine_bubble="$bubble_left$(foreground $user_color)$user_symbol$(foregrou
 filepath_bubble="$bubble_left$(foreground $filepath_color)$filepath_symbol$bubble_right"
 
 error_code_bubble="%(?,,$bubble_left$(foreground $prompt_symbol_error_color)%?$bubble_right)"
+
+date_bubble="$bubble_left$(foreground '208')%W$bubble_right"
+
+time_bubble="$bubble_left$(foreground '073')%T  $bubble_right"
 
 # PROMPTS
 # different prompts to try out, just uncomment/comment
@@ -202,6 +316,6 @@ _newline=$'\n'
 _lineup=$'\e[1A'
 _linedown=$'\e[1B'
 
-PROMPT='$(ssh_bubble)$user_machine_bubble$filepath_bubble$_newline$end_of_prompt%{$reset_color%}'
-RPROMPT='%{$_lineup%}$(git_bubble)$error_code_bubble%{$_linedown%}%{$reset_color%}'
+PROMPT='$_newline$(ssh_bubble)$user_machine_bubble$filepath_bubble$_newline$end_of_prompt%{$reset_color%}'
+RPROMPT='%{$_lineup%}$(git_bubble)$error_code_bubble$(exec_time_bubble)$date_bubble$time_bubble$(battery_bubble)%{$_linedown%}%{$reset_color%}'
 
